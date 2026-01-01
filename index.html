@@ -1,1 +1,90 @@
-.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dainik Jagran Viewer</title>
+    <style>
+        /* RESET */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: #e0e0e0;
+            font-family: sans-serif;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* 1. THE CROPPING CONTAINER */
+        .crop-container {
+            width: 98%;
+            height: 100%; 
+            position: relative;
+            overflow: hidden; 
+            background: white;
+        }
+
+        /* 2. THE IFRAME */
+        iframe {
+            width: 100%;
+            height: 222%; 
+            border: none;
+            margin-bottom: -150px; 
+        }
+
+        /* 3. WHITE COVER BAR */
+        .white-out-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0px; 
+            background-color: white; 
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* LOADER STYLING */
+        #loader {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            z-index: 999;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">Loading...</div>
+
+    <div class="crop-container">
+        <!-- 
+           UPDATED SECURITY SETTINGS:
+           1. sandbox: Removed 'allow-popups'. Kept scripts/forms/same-origin so the site works.
+              Since 'allow-top-navigation' is NOT here, the iframe cannot redirect your browser.
+           2. referrerpolicy: set to 'no-referrer' for extra privacy/anti-tracking.
+        -->
+        <iframe 
+            id="myFrame"
+            src="https://newslabzone.com/epaper/dainik-jagran#item13"
+            sandbox="allow-forms allow-scripts allow-same-origin"
+            referrerpolicy="no-referrer"
+            scrolling="yes"
+            onload="document.getElementById('loader').style.display='none';">
+        </iframe>
+
+        <div class="white-out-bar"></div>
+    </div>
+
+</body>
+  </html>
